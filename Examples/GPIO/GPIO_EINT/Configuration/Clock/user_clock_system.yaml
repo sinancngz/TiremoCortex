@@ -1,0 +1,105 @@
+USER_CLOCK_SYSTEM:
+  SUBCLK_HSE:
+    FRONT:
+      SOURCE:
+      - HSE
+      - 4000000
+    MUX:
+      GATE: OFF
+    REAR:
+      SIGNAL: HSE
+  SUBCLK_LSE:
+    FRONT:
+      SOURCE:
+      - LSE
+      - 32768
+    MUX:
+      GATE: OFF
+    REAR:
+      SIGNAL: LSE
+  SUBCLK_HSI:
+    FRONT:
+      SOURCE:
+      - HSI
+      - 16000000
+    MUX:
+      GATE: ON
+    REAR:
+      SIGNAL: HSI
+  SUBCLK_LSI:
+    FRONT:
+      SOURCE:
+      - LSI
+      - 500000
+    MUX:
+      GATE: OFF
+    REAR:
+      SIGNAL: LSI
+  SUBCLK_PLL:
+    FRONT:
+      SOURCE:
+      - HSI
+      - 16000000
+    MUX:
+      SELECT: HSI
+    DIV:
+      DIVIDE: 1
+    REAR:
+      SIGNAL: PLL_IN
+  SUBCOMP_PLL:
+    FRONT:
+      SOURCE:
+      - PLL_IN
+      - 16000000
+    SEGMENT:
+      START: true
+      PRE_DIV: 7
+      POST_DIV1: 179
+      DOUBLER: None
+      POST_DIV2: 0
+      OUT_DIV: 1
+      CURRENT:
+      VCO_BIAS:
+      OUTPUT_TYPE: PLL_OUT
+      LIMITER: 200000000
+    REAR:
+      SIGNAL: PLL_OUT
+  SUBCLK_MCLK:
+    FRONT:
+      SOURCE:
+      - PLL_OUT
+      - 180000000
+    MUX:
+      SELECT: PLL_OUT
+    REAR:
+      SIGNAL: MCLK
+  SUBCLK_HCLK:
+    FRONT:
+      SOURCE:
+      - MCLK
+      - 180000000
+    DIV:
+      DIVIDE: 1
+    REAR:
+      SIGNAL: HCLK
+  SUBCLK_PCLK:
+    FRONT:
+      SOURCE:
+      - HCLK
+      - 180000000
+    DIV:
+      DIVIDE: 1
+    REAR:
+      SIGNAL: PCLK
+  SUBCLK_CLKO:
+    FRONT:
+      SOURCE:
+      - LSI
+      - 0
+    MUX:
+      SELECT: LSI
+    DIV:
+      DIVIDE: 30
+    REAR:
+      GATE: OFF
+      SIGNAL: CLKO
