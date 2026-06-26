@@ -130,26 +130,6 @@ void LedBlink(void)
 }
 
 /**********************************************************************
- * @brief       Configure GPIO Alternate Functions
- * @param   	None
- * @return      None
- **********************************************************************/
-void GPIO_Configure()
-{
-    /* Configure all Test LEDs as GPIO output (ALT_0) */
-    HAL_PCU_SetAltMode(BOARD_LED1_PORT, BOARD_LED1_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_LED2_PORT, BOARD_LED2_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_LED3_PORT, BOARD_LED3_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_LED4_PORT, BOARD_LED4_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_LED5_PORT, BOARD_LED5_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_LED6_PORT, BOARD_LED6_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_LED7_PORT, BOARD_LED7_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_LED8_PORT, BOARD_LED8_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_LED9_PORT, BOARD_LED9_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_LED10_PORT, BOARD_LED10_PIN, PCU_ALT_0);
-}
-
-/**********************************************************************
  * @brief       User Code Here
  * @param   	None
  * @return      None
@@ -157,7 +137,6 @@ void GPIO_Configure()
 void PRV_USER_Code(void)
 {
     SysTick_Config(SystemCoreClock / SYSTICK_1MS_DIV);
-    GPIO_Configure();
     /* put your code above this line. */
     while (1)
     {

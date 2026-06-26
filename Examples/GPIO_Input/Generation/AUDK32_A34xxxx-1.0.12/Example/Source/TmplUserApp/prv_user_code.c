@@ -81,17 +81,6 @@ void LED_OFF(PCU_ID_e port, PCU_PIN_ID_e pin)
 }
 
 /**********************************************************************
- * @brief       Configure GPIO Alternate Functions
- * @param   	None
- * @return      None
- **********************************************************************/
-void GPIO_Configure(void)
-{
-    HAL_PCU_SetAltMode(BOARD_LED6_PORT, BOARD_LED6_PIN, PCU_ALT_0);
-    HAL_PCU_SetAltMode(BOARD_USER_BTN_PORT, BOARD_USER_BTN_PIN, PCU_ALT_0);
-}
-
-/**********************************************************************
  * @brief       Read user button and control LED accordingly
  * @param   	None
  * @return      None
@@ -130,6 +119,5 @@ void GPIO_inputRun(void)
 void PRV_USER_Code(void)
 {
     SysTick_Config(SystemCoreClock / SYSTICK_1MS_DIV);
-    GPIO_Configure();
     GPIO_inputRun();
 }
