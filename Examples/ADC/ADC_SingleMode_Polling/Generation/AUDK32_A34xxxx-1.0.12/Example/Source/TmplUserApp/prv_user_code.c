@@ -1,0 +1,219 @@
+/**
+ *******************************************************************************
+ * @file        prv_user_code.c
+ * @author      ABOV R&D Division
+ * @brief       ADC Single Mode Polling — battery (AVDD) measurement demo
+ *
+ * Copyright 2024 ABOV Semiconductor Co.,Ltd. All rights reserved.
+ *
+ * This file is licensed under terms that are found in the LICENSE file
+ * located at Document directory.
+ * If this file is delivered or shared without applicable license terms,
+ * the terms of the BSD-3-Clause license shall be applied.
+ * Reference: https://opensource.org/licenses/BSD-3-Clause
+ ******************************************************************************/
+
+#include "abov_config.h"
+#include "abov_module_config.h"
+#include "hal_adc.h"
+#include "DebugLibrary/debug_framework.h"
+
+#define BATTERY_ADC_ID              ADC_ID_0
+#define BATTERY_VCORE_CH            23U
+#define BATTERY_ADC_RESOLUTION      4096UL
+#define BATTERY_ADC_WAIT_TIMEOUT    100000UL
+
+#define SYSTICK_1MS_DIV             1000U
+#define BATTERY_MEASURE_INTERVAL_MS 1000U
+
+/* UART channel used for debug output (configured via MCUbrew32) */
+#define DEBUG_UART_CHANNEL          UART_ID_0
+
+extern uint32_t SystemCoreClock;
+
+static volatile uint32_t s_un32SysTimerVal = 0U;
+static uint8_t s_bBatteryReady = 0U;
+
+/*-------------------------------------------------------------------------*//**
+ * @brief         ARM System Timer Interrupt Handler
+ * @param         None
+ * @return        None
+ *//*-------------------------------------------------------------------------*/
+void SysTick_Handler(void)
+{
+    if (s_un32SysTimerVal != 0U)
+        s_un32SysTimerVal--;
+}
+
+/*-------------------------------------------------------------------------*//**
+ * @brief         Waiting by time(ms)
+ * @param         un32TimeMS : Millisecond time to wait
+ * @return        None
+ *//*-------------------------------------------------------------------------*/
+void SYSTICK_Wait(uint32_t un32TimeMS)
+{
+    s_un32SysTimerVal = un32TimeMS;
+    while (s_un32SysTimerVal != 0U);
+}
+
+/*-------------------------------------------------------------------------*//**
+ * @brief         Initialize battery reading
+ * @param         None
+ * @return        0 on success, non-zero on error
+ * @note          ADC must already be initialized via PRV_ADC_Init()
+ *//*-------------------------------------------------------------------------*/
+static uint8_t BatteryReading_Init(void)
+{
+    SYSTICK_Wait(20U);
+    s_bBatteryReady = 1U;
+    return 0U;
+}
+
+/*-------------------------------------------------------------------------*//**
+ * @brief         Read ADC channel value (single-mode polling)
+ * @param         un8Channel  : ADC channel number
+ * @param         pun16Value  : Pointer to store ADC raw value
+ * @return        0 on success, non-zero on error
+ *//*-------------------------------------------------------------------------*/
+static uint8_t BatteryReading_ReadChannel(uint8_t un8Channel, uint16_t *pun16Value)
+{
+    HAL_ERR_e eErr;
+    ADC_SEQ_DATA_t tAdcData;
+    ADC_SEQ_TRG_CFG_t tSeqCfg;
+
+    if ((s_bBatteryReady == 0U) || (pun16Value == NULL))
+        return 1U;
+
+    tSeqCfg.eType = ADC_TRG_TYPE_INDEPENDENT;
+    tSeqCfg.eTrgSrc = ADC_TRG_SRC_ADST;
+    tSeqCfg.un8TrgNum = 0U;
+    tSeqCfg.utCfg.tInd.un8SeqNum = 0U;
+    tSeqCfg.utCfg.tInd.un8ChNum = un8Channel;
+    tSeqCfg.utCfg.tInd.un8SamplingTime = 10U;
+
+    eErr = HAL_ADC_SetSeqConfig(BATTERY_ADC_ID, &tSeqCfg);
+    if (eErr != HAL_ERR_OK)
+        return 2U;
+
+    eErr = HAL_ADC_Start(BATTERY_ADC_ID);
+    if (eErr != HAL_ERR_OK)
+        return 3U;
+
+    eErr = HAL_ADC_SetWaitComplete(BATTERY_ADC_ID, BATTERY_ADC_WAIT_TIMEOUT);
+    if (eErr != HAL_ERR_OK)
+    {
+        (void)HAL_ADC_Stop(BATTERY_ADC_ID);
+        return 4U;
+    }
+
+    tAdcData.bReadDDR = false;
+    eErr = HAL_ADC_GetData(BATTERY_ADC_ID, 0U, &tAdcData);
+    if (eErr != HAL_ERR_OK)
+    {
+        (void)HAL_ADC_Stop(BATTERY_ADC_ID);
+        return 5U;
+    }
+
+    *pun16Value = tAdcData.un16Result;
+    (void)HAL_ADC_Stop(BATTERY_ADC_ID);
+
+    return 0U;
+}
+
+/*-------------------------------------------------------------------------*//**
+ * @brief         Read MCU supply voltage (AVDD) using VCORE reference
+ * @param         pun16VcoreRaw        : VCORE raw ADC value
+ * @param         pun32AvddMillivolts  : Calculated AVDD in millivolts
+ * @return        0 on success, non-zero on error
+ *//*-------------------------------------------------------------------------*/
+static uint8_t BatteryReading_ReadSupplyVoltage(uint16_t *pun16VcoreRaw, uint32_t *pun32AvddMillivolts)
+{
+    uint8_t result;
+    uint16_t un16VcoreRaw = 0U;
+
+    if ((s_bBatteryReady == 0U) || (pun16VcoreRaw == NULL) || (pun32AvddMillivolts == NULL))
+        return 1U;
+
+    result = BatteryReading_ReadChannel(BATTERY_VCORE_CH, &un16VcoreRaw);
+    if (result != 0U)
+        return result;
+
+    *pun16VcoreRaw = un16VcoreRaw;
+
+    if (un16VcoreRaw > 0U)
+        *pun32AvddMillivolts = (1000UL * BATTERY_ADC_RESOLUTION) / un16VcoreRaw;
+    else
+    {
+        *pun32AvddMillivolts = 0U;
+        return 6U;
+    }
+
+    return 0U;
+}
+
+/*-------------------------------------------------------------------------*//**
+ * @brief         Print supply voltage via debug framework
+ * @param         None
+ * @return        None
+ *//*-------------------------------------------------------------------------*/
+static void BatteryReading_Print(void)
+{
+    uint16_t un16VcoreRaw = 0U;
+    uint32_t un32AvddMv = 0U;
+
+    if (s_bBatteryReady == 0U)
+    {
+        DebugFramework_Puts("AVDD: Not initialized\r\n");
+        return;
+    }
+
+    if (BatteryReading_ReadSupplyVoltage(&un16VcoreRaw, &un32AvddMv) != 0U)
+    {
+        DebugFramework_Puts("AVDD: Read error\r\n");
+        return;
+    }
+
+    DebugFramework_Printf("AVDD: %lu.%03lu V (Vcore raw: %u)\r\n",
+        (unsigned long)(un32AvddMv / 1000UL),
+        (unsigned long)(un32AvddMv % 1000UL),
+        (unsigned int)un16VcoreRaw);
+}
+
+/*-------------------------------------------------------------------------*//**
+ * @brief         ADC single-mode polling loop for battery voltage
+ * @param         None
+ * @return        None
+ *//*-------------------------------------------------------------------------*/
+static void ADC_SingleMode_Polling(void)
+{
+    while (1)
+    {
+        BatteryReading_Print();
+        SYSTICK_Wait(BATTERY_MEASURE_INTERVAL_MS);
+    }
+}
+
+/*-------------------------------------------------------------------------*//**
+ * @brief         User Code Here
+ * @param         None
+ * @return        None
+ *//*-------------------------------------------------------------------------*/
+void PRV_USER_Code(void)
+{
+    SysTick_Config(SystemCoreClock / SYSTICK_1MS_DIV);
+
+    if (!DebugFramework_Init(DEBUG_UART_CHANNEL))
+    {
+        while (1);
+    }
+
+    if (BatteryReading_Init() != 0U)
+    {
+        DebugFramework_Puts("BatteryReading_Init failed\r\n");
+        while (1);
+    }
+
+    DebugFramework_Puts("Battery reading ready. Starting AVDD measurement...\r\n");
+
+    ADC_SingleMode_Polling();
+}
