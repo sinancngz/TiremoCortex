@@ -28,8 +28,8 @@
 /* Generated Code */
 /* >>> Placeholder for code generation */
 
-extern void ADC_IRQHandler_ADC_ID_2(uint32_t un32Event, void *pContext);
-static void Init_ADC_ID_2(void)
+extern void ADC_IRQHandler_ADC_ID_0(uint32_t un32Event, void *pContext);
+static void Init_ADC_ID_0(void)
 {
     HAL_ERR_e eErr = HAL_ERR_OK;
 
@@ -51,25 +51,25 @@ static void Init_ADC_ID_2(void)
         .bSleep = True,
     };
 
-    eErr = HAL_ADC_Init(ADC_ID_2);
+    eErr = HAL_ADC_Init(ADC_ID_0);
     if (eErr != HAL_ERR_OK)
     {
         return;
     }
 
-    eErr = HAL_ADC_SetClkConfig(ADC_ID_2, &tClkCfg);
+    eErr = HAL_ADC_SetClkConfig(ADC_ID_0, &tClkCfg);
     if (eErr != HAL_ERR_OK)
     {
         return;
     }
 
-    eErr = HAL_ADC_SetConfig(ADC_ID_2, &tCfg);
+    eErr = HAL_ADC_SetConfig(ADC_ID_0, &tCfg);
     if (eErr != HAL_ERR_OK)
     {
         return;
     }
 
-    eErr = HAL_ADC_SetIRQ(ADC_ID_2, ADC_OPS_POLL, ADC_IRQHandler_ADC_ID_2, NULL, 3);
+    eErr = HAL_ADC_SetIRQ(ADC_ID_0, ADC_OPS_POLL, ADC_IRQHandler_ADC_ID_0, NULL, 3);
     if (eErr != HAL_ERR_OK)
     {
         return;
@@ -84,7 +84,7 @@ static void Init_ADC_ID_2(void)
 void PRV_ADC_Init(void)
 {
 
-    Init_ADC_ID_2();
+    Init_ADC_ID_0();
 
     return;
 }

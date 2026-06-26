@@ -4,17 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Platform/HAL/RTC/hal_rtc.c 
+C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Example/Source/TmplUserApp/MP23ABS1/mp23abs1_sensor.c 
 
 OBJS += \
-./HAL/RTC/hal_rtc.o 
+./Main/MP23ABS1/mp23abs1_sensor.o 
 
 C_DEPS += \
-./HAL/RTC/hal_rtc.d 
+./Main/MP23ABS1/mp23abs1_sensor.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-HAL/RTC/hal_rtc.o: C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Platform/HAL/RTC/hal_rtc.c HAL/RTC/subdir.mk
+Main/MP23ABS1/mp23abs1_sensor.o: C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Example/Source/TmplUserApp/MP23ABS1/mp23abs1_sensor.c Main/MP23ABS1/subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: GNU Arm Cross C Compiler'
 	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mlittle-endian -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -g3 -DEXTRN_SUBFAMILY_A34G43x -DEXTRN_ABOV_MODULE_CONFIG -I"C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Example/Build/Eclipse/TmplUserApp/Workspace/tmpl_userapp/../../../../../../Framework/CMSIS/Core/Include" -I"C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Example/Build/Eclipse/TmplUserApp/Workspace/tmpl_userapp/../../../../../../Framework/CMSIS/Device/ABOV/Include" -I"C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Example/Build/Eclipse/TmplUserApp/Workspace/tmpl_userapp/../../../../../../ProductConfig/Config" -I"C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Example/Build/Eclipse/TmplUserApp/Workspace/tmpl_userapp/../../../../../../Platform/HAL/Include" -I"C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Example/Build/Eclipse/TmplUserApp/Workspace/tmpl_userapp/../../../../../../Platform/HAL/HPL/Include" -I"C:/TiremoCortex/ADC_SingleMode_Polling/Generation/AUDK32_A34xxxx-1.0.12/Example/Build/Eclipse/TmplUserApp/Workspace/tmpl_userapp/../../../../../../Platform/Library/ABOV/Debug/Include" -std=gnu11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -c -o "$@" "$<"

@@ -37,7 +37,7 @@ static void Init_UART_ID_0(void)
     {
         .eClk = UART_CLK_MCCR,
         .eMccr = UART_CLK_MCCR_MCLK,
-        .un8MccrDiv = 1,
+        .un8MccrDiv = 2,
     };
 
     UART_CFG_t tCfg =

@@ -2,7 +2,7 @@
  *******************************************************************************
  * @file        prv_user_code.c
  * @author      ABOV R&D Division
- * @brief       ADC Single Mode Polling — battery (AVDD) measurement demo
+ * @brief       ADC Single Mode Polling — MP23ABS1 (Tiremo-style)
  *
  * Copyright 2024 ABOV Semiconductor Co.,Ltd. All rights reserved.
  *
@@ -17,38 +17,43 @@
 #include "abov_module_config.h"
 #include "hal_adc.h"
 #include "DebugLibrary/debug_framework.h"
-
-#define BATTERY_ADC_ID              ADC_ID_2
-#define BATTERY_VCORE_CH            23U
-#define BATTERY_ADC_RESOLUTION      4096UL
-#define BATTERY_ADC_WAIT_TIMEOUT    100000UL
+#include "MP23ABS1/mp23abs1_sensor.h"
 
 #define SYSTICK_1MS_DIV             1000U
-#define BATTERY_MEASURE_INTERVAL_MS 1000U
+#define MIC_RECORD_MS               1000U
+#define MIC_SYSTICK_HANDLER_DIV     16U
 
-/* UART channel used for debug output (configured via MCUbrew32) */
+#define AUDIO_BUFFER_SIZE           1024U
+#define AUDIO_SAMPLE_RATE           MP23ABS1_FREQ_16KHZ
+#define AUDIO_VOLUME                80U
+
 #define DEBUG_UART_CHANNEL          UART_ID_0
 
 extern uint32_t SystemCoreClock;
 
 static volatile uint32_t s_un32SysTimerVal = 0U;
-static uint8_t s_bBatteryReady = 0U;
+static uint16_t s_aun16AudioBuffer[AUDIO_BUFFER_SIZE];
 
 /*-------------------------------------------------------------------------*//**
- * @brief         ARM System Timer Interrupt Handler
- * @param         None
- * @return        None
+ * @brief         SysTick: ms delay + MP23ABS1 sampling (same as Tiremo prv_user_code)
  *//*-------------------------------------------------------------------------*/
 void SysTick_Handler(void)
 {
+    static uint32_t s_un32TickCounter = 0U;
+
     if (s_un32SysTimerVal != 0U)
         s_un32SysTimerVal--;
+
+    s_un32TickCounter++;
+    if (s_un32TickCounter >= MIC_SYSTICK_HANDLER_DIV)
+    {
+        s_un32TickCounter = 0U;
+        MP23ABS1_TimerHandler();
+    }
 }
 
 /*-------------------------------------------------------------------------*//**
  * @brief         Waiting by time(ms)
- * @param         un32TimeMS : Millisecond time to wait
- * @return        None
  *//*-------------------------------------------------------------------------*/
 void SYSTICK_Wait(uint32_t un32TimeMS)
 {
@@ -57,146 +62,125 @@ void SYSTICK_Wait(uint32_t un32TimeMS)
 }
 
 /*-------------------------------------------------------------------------*//**
- * @brief         Initialize battery reading
- * @param         None
- * @return        0 on success, non-zero on error
- * @note          ADC must already be initialized via PRV_ADC_Init()
+ * @brief         Configure ADC sequence for PA0 / AN0 (once at init)
  *//*-------------------------------------------------------------------------*/
-static uint8_t BatteryReading_Init(void)
+static HAL_ERR_e MicAdc_ConfigureSequence(void)
 {
-    SYSTICK_Wait(20U);
-    s_bBatteryReady = 1U;
-    return 0U;
-}
-
-/*-------------------------------------------------------------------------*//**
- * @brief         Read ADC channel value (single-mode polling)
- * @param         un8Channel  : ADC channel number
- * @param         pun16Value  : Pointer to store ADC raw value
- * @return        0 on success, non-zero on error
- *//*-------------------------------------------------------------------------*/
-static uint8_t BatteryReading_ReadChannel(uint8_t un8Channel, uint16_t *pun16Value)
-{
-    HAL_ERR_e eErr;
-    ADC_SEQ_DATA_t tAdcData;
     ADC_SEQ_TRG_CFG_t tSeqCfg;
-
-    if ((s_bBatteryReady == 0U) || (pun16Value == NULL))
-        return 1U;
 
     tSeqCfg.eType = ADC_TRG_TYPE_INDEPENDENT;
     tSeqCfg.eTrgSrc = ADC_TRG_SRC_ADST;
     tSeqCfg.un8TrgNum = 0U;
     tSeqCfg.utCfg.tInd.un8SeqNum = 0U;
-    tSeqCfg.utCfg.tInd.un8ChNum = un8Channel;
+    tSeqCfg.utCfg.tInd.un8ChNum = MP23ABS1_ADC_CHANNEL;
     tSeqCfg.utCfg.tInd.un8SamplingTime = 10U;
 
-    eErr = HAL_ADC_SetSeqConfig(BATTERY_ADC_ID, &tSeqCfg);
-    if (eErr != HAL_ERR_OK)
-        return 2U;
+    return HAL_ADC_SetSeqConfig(MP23ABS1_ADC_ID, &tSeqCfg);
+}
 
-    eErr = HAL_ADC_Start(BATTERY_ADC_ID);
-    if (eErr != HAL_ERR_OK)
-        return 3U;
+/*-------------------------------------------------------------------------*//**
+ * @brief         RMS from audio buffer (same as Tiremo sensor.c)
+ *//*-------------------------------------------------------------------------*/
+static uint32_t Compute_RMS(const uint16_t *pBuffer, uint32_t un32Len)
+{
+    uint64_t un64SumSq = 0U;
+    uint32_t i;
 
-    eErr = HAL_ADC_SetWaitComplete(BATTERY_ADC_ID, BATTERY_ADC_WAIT_TIMEOUT);
-    if (eErr != HAL_ERR_OK)
+    if ((pBuffer == NULL) || (un32Len == 0U))
+        return 0U;
+
+    for (i = 0U; i < un32Len; i++)
     {
-        (void)HAL_ADC_Stop(BATTERY_ADC_ID);
-        return 4U;
+        int32_t n32Sample = (int32_t)pBuffer[i] - 32768;
+        un64SumSq += (uint64_t)((int64_t)n32Sample * n32Sample);
     }
 
-    tAdcData.bReadDDR = false;
-    eErr = HAL_ADC_GetData(BATTERY_ADC_ID, 0U, &tAdcData);
-    if (eErr != HAL_ERR_OK)
     {
-        (void)HAL_ADC_Stop(BATTERY_ADC_ID);
-        return 5U;
-    }
+        uint64_t un64Mean = un64SumSq / un32Len;
+        uint64_t un64X = un64Mean;
+        uint64_t un64Y = (un64X + 1U) / 2U;
 
-    *pun16Value = tAdcData.un16Result;
-    (void)HAL_ADC_Stop(BATTERY_ADC_ID);
+        if (un64Mean > 0U)
+        {
+            while (un64Y < un64X)
+            {
+                un64X = un64Y;
+                un64Y = (un64X + un64Mean / un64X) / 2U;
+            }
+
+            return (uint32_t)un64X;
+        }
+    }
 
     return 0U;
 }
 
-/*-------------------------------------------------------------------------*//**
- * @brief         Read MCU supply voltage (AVDD) using VCORE reference
- * @param         pun16VcoreRaw        : VCORE raw ADC value
- * @param         pun32AvddMillivolts  : Calculated AVDD in millivolts
- * @return        0 on success, non-zero on error
- *//*-------------------------------------------------------------------------*/
-static uint8_t BatteryReading_ReadSupplyVoltage(uint16_t *pun16VcoreRaw, uint32_t *pun32AvddMillivolts)
+void MP23ABS1_Error_Callback(void)
 {
-    uint8_t result;
-    uint16_t un16VcoreRaw = 0U;
+    DebugFramework_Puts("Mic: driver error\r\n");
+}
 
-    if ((s_bBatteryReady == 0U) || (pun16VcoreRaw == NULL) || (pun32AvddMillivolts == NULL))
+/*-------------------------------------------------------------------------*//**
+ * @brief         Initialize microphone (Tiremo Sensor_TestAll / sensor.c style)
+ *//*-------------------------------------------------------------------------*/
+static uint8_t Mic_Init(void)
+{
+    MP23ABS1_Init_t tInit;
+
+    tInit.SampleRate = AUDIO_SAMPLE_RATE;
+    tInit.Volume = AUDIO_VOLUME;
+    tInit.pBuffer = s_aun16AudioBuffer;
+    tInit.BufferSize = AUDIO_BUFFER_SIZE;
+
+    if (MP23ABS1_Init(&tInit) != MP23ABS1_OK)
         return 1U;
 
-    result = BatteryReading_ReadChannel(BATTERY_VCORE_CH, &un16VcoreRaw);
-    if (result != 0U)
-        return result;
-
-    *pun16VcoreRaw = un16VcoreRaw;
-
-    if (un16VcoreRaw > 0U)
-        *pun32AvddMillivolts = (1000UL * BATTERY_ADC_RESOLUTION) / un16VcoreRaw;
-    else
-    {
-        *pun32AvddMillivolts = 0U;
-        return 6U;
-    }
+    if (MicAdc_ConfigureSequence() != HAL_ERR_OK)
+        return 2U;
 
     return 0U;
 }
 
 /*-------------------------------------------------------------------------*//**
- * @brief         Print supply voltage via debug framework
- * @param         None
- * @return        None
- *//*-------------------------------------------------------------------------*/
-static void BatteryReading_Print(void)
-{
-    uint16_t un16VcoreRaw = 0U;
-    uint32_t un32AvddMv = 0U;
-
-    if (s_bBatteryReady == 0U)
-    {
-        DebugFramework_Puts("AVDD: Not initialized\r\n");
-        return;
-    }
-
-    if (BatteryReading_ReadSupplyVoltage(&un16VcoreRaw, &un32AvddMv) != 0U)
-    {
-        DebugFramework_Puts("AVDD: Read error\r\n");
-        return;
-    }
-
-    DebugFramework_Printf("AVDD: %lu.%03lu V (Vcore raw: %u)\r\n",
-        (unsigned long)(un32AvddMv / 1000UL),
-        (unsigned long)(un32AvddMv % 1000UL),
-        (unsigned int)un16VcoreRaw);
-}
-
-/*-------------------------------------------------------------------------*//**
- * @brief         ADC single-mode polling loop for battery voltage
- * @param         None
- * @return        None
+ * @brief         Record 1 s via SysTick polling, then print RMS + sample count
+ * @note          Polling runs inside MP23ABS1_TimerHandler (ADC_OPS_POLL)
  *//*-------------------------------------------------------------------------*/
 static void ADC_SingleMode_Polling(void)
 {
+    uint32_t un32Count;
+    uint32_t un32CalcLen;
+    uint32_t un32Rms;
+
     while (1)
     {
-        BatteryReading_Print();
-        SYSTICK_Wait(BATTERY_MEASURE_INTERVAL_MS);
+        if (MP23ABS1_StartRecording() != MP23ABS1_OK)
+        {
+            DebugFramework_Puts("Mic: start failed\r\n");
+            SYSTICK_Wait(MIC_RECORD_MS);
+            continue;
+        }
+
+        SYSTICK_Wait(MIC_RECORD_MS);
+        (void)MP23ABS1_StopRecording();
+
+        un32Count = MP23ABS1_GetSampleCount();
+        if (un32Count == 0U)
+        {
+            DebugFramework_Puts("Mic: no samples\r\n");
+            continue;
+        }
+
+        un32CalcLen = (un32Count < AUDIO_BUFFER_SIZE) ? un32Count : AUDIO_BUFFER_SIZE;
+        un32Rms = Compute_RMS(s_aun16AudioBuffer, un32CalcLen);
+
+        DebugFramework_Printf("Mic RMS: %lu  samples: %lu\r\n",
+            (unsigned long)un32Rms,
+            (unsigned long)un32Count);
     }
 }
 
 /*-------------------------------------------------------------------------*//**
- * @brief         User Code Here
- * @param         None
- * @return        None
+ * @brief         User application entry (called from main.c)
  *//*-------------------------------------------------------------------------*/
 void PRV_USER_Code(void)
 {
@@ -207,13 +191,11 @@ void PRV_USER_Code(void)
         while (1);
     }
 
-    if (BatteryReading_Init() != 0U)
+    if (Mic_Init() != 0U)
     {
-        DebugFramework_Puts("BatteryReading_Init failed\r\n");
+        DebugFramework_Puts("MP23ABS1 init failed\r\n");
         while (1);
     }
-
-    DebugFramework_Puts("Battery reading ready. Starting AVDD measurement...\r\n");
 
     ADC_SingleMode_Polling();
 }

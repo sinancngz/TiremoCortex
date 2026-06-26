@@ -49,5 +49,6 @@ HAL/USART \
 HAL/VREFBUF \
 HAL/WDT \
 Main/DebugLibrary \
+Main/MP23ABS1 \
 Main \
 
