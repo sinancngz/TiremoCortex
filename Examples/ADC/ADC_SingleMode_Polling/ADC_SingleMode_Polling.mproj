@@ -37,8 +37,8 @@ PROJECT_TARGET_APP:
   prmAppType: ACM_USERAPP_TYPE_TMPL_USER_APP
   prmAppName: tmpl_userapp
   prmPeriList:
-  - UART
   - ADC
+  - UART
   prmAppUpdateComplete: true
 
 # Update if only user complete debug configuration

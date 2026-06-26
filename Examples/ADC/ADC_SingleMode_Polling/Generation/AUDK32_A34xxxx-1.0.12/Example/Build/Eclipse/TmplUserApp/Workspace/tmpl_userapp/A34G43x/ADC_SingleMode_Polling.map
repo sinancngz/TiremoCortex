@@ -532,9 +532,9 @@ Discarded input sections
  .text          0x00000000        0x0 ./Main/user_adc_isr.o
  .data          0x00000000        0x0 ./Main/user_adc_isr.o
  .bss           0x00000000        0x0 ./Main/user_adc_isr.o
- .text.ADC_IRQHandler_ADC_ID_1
+ .text.ADC_IRQHandler_ADC_ID_0
                 0x00000000        0x2 ./Main/user_adc_isr.o
- .text.ADC_IRQHandler_ADC_ID_2
+ .text.ADC_IRQHandler_ADC_ID_1
                 0x00000000        0x2 ./Main/user_adc_isr.o
  .debug_macro   0x00000000      0xac0 ./Main/user_adc_isr.o
  .debug_macro   0x00000000       0xe7 ./Main/user_adc_isr.o
@@ -4018,442 +4018,441 @@ LOAD C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-non
                 0x00000698       0x90 ./Main/prv_scu_clk.o
                 0x00000698                PRV_SCU_CLK_Init
  .text.BatteryReading_ReadChannel
-                0x00000728       0x94 ./Main/prv_user_code.o
+                0x00000728       0x98 ./Main/prv_user_code.o
  .text.BatteryReading_ReadSupplyVoltage
-                0x000007bc       0x54 ./Main/prv_user_code.o
+                0x000007c0       0x54 ./Main/prv_user_code.o
  .text.BatteryReading_Print
-                0x00000810       0x64 ./Main/prv_user_code.o
+                0x00000814       0x64 ./Main/prv_user_code.o
  .text.SysTick_Handler
-                0x00000874       0x14 ./Main/prv_user_code.o
-                0x00000874                SysTick_Handler
+                0x00000878       0x14 ./Main/prv_user_code.o
+                0x00000878                SysTick_Handler
  .text.SYSTICK_Wait
-                0x00000888       0x14 ./Main/prv_user_code.o
-                0x00000888                SYSTICK_Wait
+                0x0000088c       0x14 ./Main/prv_user_code.o
+                0x0000088c                SYSTICK_Wait
  .text.BatteryReading_Init
-                0x0000089c       0x18 ./Main/prv_user_code.o
+                0x000008a0       0x18 ./Main/prv_user_code.o
  .text.ADC_SingleMode_Polling
-                0x000008b4       0x10 ./Main/prv_user_code.o
+                0x000008b8       0x10 ./Main/prv_user_code.o
  .text.PRV_USER_Code
-                0x000008c4       0x64 ./Main/prv_user_code.o
-                0x000008c4                PRV_USER_Code
- .text.Init_ADC_ID_0
-                0x00000928       0x58 ./Main/user_adc.o
+                0x000008c8       0x64 ./Main/prv_user_code.o
+                0x000008c8                PRV_USER_Code
+ .text.Init_ADC_ID_2
+                0x0000092c       0x5c ./Main/user_adc.o
  .text.PRV_ADC_Init
-                0x00000980        0x8 ./Main/user_adc.o
-                0x00000980                PRV_ADC_Init
- .text.ADC_IRQHandler_ADC_ID_0
-                0x00000988        0x2 ./Main/user_adc_isr.o
-                0x00000988                ADC_IRQHandler_ADC_ID_0
- *fill*         0x0000098a        0x2 
+                0x00000988        0x8 ./Main/user_adc.o
+                0x00000988                PRV_ADC_Init
+ .text.ADC_IRQHandler_ADC_ID_2
+                0x00000990        0x2 ./Main/user_adc_isr.o
+                0x00000990                ADC_IRQHandler_ADC_ID_2
+ *fill*         0x00000992        0x2 
  .text.Init_UART_ID_0
-                0x0000098c       0x5c ./Main/user_uart.o
+                0x00000994       0x5c ./Main/user_uart.o
  .text.PRV_UART_Init
-                0x000009e8        0x8 ./Main/user_uart.o
-                0x000009e8                PRV_UART_Init
+                0x000009f0        0x8 ./Main/user_uart.o
+                0x000009f0                PRV_UART_Init
  .text.UART_IRQHandler_UART_ID_0
-                0x000009f0        0x2 ./Main/user_uart_isr.o
-                0x000009f0                UART_IRQHandler_UART_ID_0
- *fill*         0x000009f2        0x2 
+                0x000009f8        0x2 ./Main/user_uart_isr.o
+                0x000009f8                UART_IRQHandler_UART_ID_0
+ *fill*         0x000009fa        0x2 
  .text.__NVIC_EnableIRQ
-                0x000009f4       0x1c ./HAL/UART/hal_uart.o
+                0x000009fc       0x1c ./HAL/UART/hal_uart.o
  .text.__NVIC_DisableIRQ
-                0x00000a10       0x24 ./HAL/UART/hal_uart.o
+                0x00000a18       0x24 ./HAL/UART/hal_uart.o
  .text.__NVIC_SetPriority
-                0x00000a34       0x28 ./HAL/UART/hal_uart.o
+                0x00000a3c       0x28 ./HAL/UART/hal_uart.o
  .text.UART_SetScuEnable
-                0x00000a5c       0xb0 ./HAL/UART/hal_uart.o
+                0x00000a64       0xb0 ./HAL/UART/hal_uart.o
  .text.UART_GetIRQNum
-                0x00000b0c       0x50 ./HAL/UART/hal_uart.o
+                0x00000b14       0x50 ./HAL/UART/hal_uart.o
  .text.UART_SetClk
-                0x00000b5c       0xc0 ./HAL/UART/hal_uart.o
+                0x00000b64       0xc0 ./HAL/UART/hal_uart.o
  .text.PRV_UART_GetReg
-                0x00000c1c        0xa ./HAL/UART/hal_uart.o
+                0x00000c24        0xa ./HAL/UART/hal_uart.o
  .text.PRV_UART_SetScuEnable
-                0x00000c26        0x8 ./HAL/UART/hal_uart.o
- *fill*         0x00000c2e        0x2 
+                0x00000c2e        0x8 ./HAL/UART/hal_uart.o
+ *fill*         0x00000c36        0x2 
  .text.PRV_UART_IRQHandler
-                0x00000c30      0x130 ./HAL/UART/hal_uart.o
+                0x00000c38      0x130 ./HAL/UART/hal_uart.o
  .text.PRV_UART_NMIHandler
-                0x00000d60       0x2c ./HAL/UART/hal_uart.o
+                0x00000d68       0x2c ./HAL/UART/hal_uart.o
  .text.HAL_UART_Init
-                0x00000d8c       0x58 ./HAL/UART/hal_uart.o
-                0x00000d8c                HAL_UART_Init
+                0x00000d94       0x58 ./HAL/UART/hal_uart.o
+                0x00000d94                HAL_UART_Init
  .text.HAL_UART_SetClkConfig
-                0x00000de4       0x16 ./HAL/UART/hal_uart.o
-                0x00000de4                HAL_UART_SetClkConfig
- *fill*         0x00000dfa        0x2 
+                0x00000dec       0x16 ./HAL/UART/hal_uart.o
+                0x00000dec                HAL_UART_SetClkConfig
+ *fill*         0x00000e02        0x2 
  .text.HAL_UART_SetConfig
-                0x00000dfc       0xa8 ./HAL/UART/hal_uart.o
-                0x00000dfc                HAL_UART_SetConfig
+                0x00000e04       0xa8 ./HAL/UART/hal_uart.o
+                0x00000e04                HAL_UART_SetConfig
  .text.HAL_UART_SetIRQ
-                0x00000ea4      0x114 ./HAL/UART/hal_uart.o
-                0x00000ea4                HAL_UART_SetIRQ
+                0x00000eac      0x114 ./HAL/UART/hal_uart.o
+                0x00000eac                HAL_UART_SetIRQ
  .text.HAL_UART_Transmit
-                0x00000fb8       0xc4 ./HAL/UART/hal_uart.o
-                0x00000fb8                HAL_UART_Transmit
+                0x00000fc0       0xc4 ./HAL/UART/hal_uart.o
+                0x00000fc0                HAL_UART_Transmit
  .text.Interrupt63_Handler
-                0x0000107c        0xa ./HAL/UART/hal_uart.o
-                0x0000107c                Interrupt63_Handler
+                0x00001084        0xa ./HAL/UART/hal_uart.o
+                0x00001084                Interrupt63_Handler
  .text.Interrupt64_Handler
-                0x00001086        0xa ./HAL/UART/hal_uart.o
-                0x00001086                Interrupt64_Handler
+                0x0000108e        0xa ./HAL/UART/hal_uart.o
+                0x0000108e                Interrupt64_Handler
  .text.Interrupt65_Handler
-                0x00001090        0xa ./HAL/UART/hal_uart.o
-                0x00001090                Interrupt65_Handler
+                0x00001098        0xa ./HAL/UART/hal_uart.o
+                0x00001098                Interrupt65_Handler
  .text.Interrupt66_Handler
-                0x0000109a        0xa ./HAL/UART/hal_uart.o
-                0x0000109a                Interrupt66_Handler
+                0x000010a2        0xa ./HAL/UART/hal_uart.o
+                0x000010a2                Interrupt66_Handler
  .text.Interrupt67_Handler
-                0x000010a4        0xa ./HAL/UART/hal_uart.o
-                0x000010a4                Interrupt67_Handler
+                0x000010ac        0xa ./HAL/UART/hal_uart.o
+                0x000010ac                Interrupt67_Handler
  .text.Interrupt68_Handler
-                0x000010ae        0xa ./HAL/UART/hal_uart.o
-                0x000010ae                Interrupt68_Handler
+                0x000010b6        0xa ./HAL/UART/hal_uart.o
+                0x000010b6                Interrupt68_Handler
  .text.Interrupt108_Handler
-                0x000010b8        0xa ./HAL/UART/hal_uart.o
-                0x000010b8                Interrupt108_Handler
+                0x000010c0        0xa ./HAL/UART/hal_uart.o
+                0x000010c0                Interrupt108_Handler
  .text.Interrupt109_Handler
-                0x000010c2        0xa ./HAL/UART/hal_uart.o
-                0x000010c2                Interrupt109_Handler
+                0x000010ca        0xa ./HAL/UART/hal_uart.o
+                0x000010ca                Interrupt109_Handler
  .text.Interrupt110_Handler
-                0x000010cc        0xa ./HAL/UART/hal_uart.o
-                0x000010cc                Interrupt110_Handler
+                0x000010d4        0xa ./HAL/UART/hal_uart.o
+                0x000010d4                Interrupt110_Handler
  .text.Interrupt111_Handler
-                0x000010d6        0xa ./HAL/UART/hal_uart.o
-                0x000010d6                Interrupt111_Handler
+                0x000010de        0xa ./HAL/UART/hal_uart.o
+                0x000010de                Interrupt111_Handler
  .text.Interrupt112_Handler
-                0x000010e0        0xa ./HAL/UART/hal_uart.o
-                0x000010e0                Interrupt112_Handler
+                0x000010e8        0xa ./HAL/UART/hal_uart.o
+                0x000010e8                Interrupt112_Handler
  .text.Interrupt113_Handler
-                0x000010ea        0xa ./HAL/UART/hal_uart.o
-                0x000010ea                Interrupt113_Handler
+                0x000010f2        0xa ./HAL/UART/hal_uart.o
+                0x000010f2                Interrupt113_Handler
  .text.Interrupt114_Handler
-                0x000010f4        0xa ./HAL/UART/hal_uart.o
-                0x000010f4                Interrupt114_Handler
- *fill*         0x000010fe        0x2 
+                0x000010fc        0xa ./HAL/UART/hal_uart.o
+                0x000010fc                Interrupt114_Handler
+ *fill*         0x00001106        0x2 
  .text.SCUCLK_SetFlashLatency
-                0x00001100       0x58 ./HAL/SCU/hal_scu_clk.o
+                0x00001108       0x58 ./HAL/SCU/hal_scu_clk.o
  .text.SCUCLK_SetMClk
-                0x00001158       0xe4 ./HAL/SCU/hal_scu_clk.o
+                0x00001160       0xe4 ./HAL/SCU/hal_scu_clk.o
  .text.SCUCLK_SetClkOut
-                0x0000123c       0x68 ./HAL/SCU/hal_scu_clk.o
+                0x00001244       0x68 ./HAL/SCU/hal_scu_clk.o
  .text.SCUCLK_SetPLLSrcDiv
-                0x000012a4       0x78 ./HAL/SCU/hal_scu_clk.o
+                0x000012ac       0x78 ./HAL/SCU/hal_scu_clk.o
  .text.PRV_SCUCLK_PLLDelay
-                0x0000131c       0x40 ./HAL/SCU/hal_scu_clk.o
+                0x00001324       0x40 ./HAL/SCU/hal_scu_clk.o
  .text.PRV_SCUCLK_IRQHandler
-                0x0000135c       0x78 ./HAL/SCU/hal_scu_clk.o
+                0x00001364       0x78 ./HAL/SCU/hal_scu_clk.o
  .text.HAL_SCU_CLK_SetMClk
-                0x000013d4       0xc0 ./HAL/SCU/hal_scu_clk.o
-                0x000013d4                HAL_SCU_CLK_SetMClk
+                0x000013dc       0xc0 ./HAL/SCU/hal_scu_clk.o
+                0x000013dc                HAL_SCU_CLK_SetMClk
  .text.HAL_SCU_CLK_SetSrcEnable
-                0x00001494       0x62 ./HAL/SCU/hal_scu_clk.o
-                0x00001494                HAL_SCU_CLK_SetSrcEnable
- *fill*         0x000014f6        0x2 
+                0x0000149c       0x62 ./HAL/SCU/hal_scu_clk.o
+                0x0000149c                HAL_SCU_CLK_SetSrcEnable
+ *fill*         0x000014fe        0x2 
  .text.HAL_SCU_CLK_SetPLLConfig
-                0x000014f8       0xe4 ./HAL/SCU/hal_scu_clk.o
-                0x000014f8                HAL_SCU_CLK_SetPLLConfig
+                0x00001500       0xe4 ./HAL/SCU/hal_scu_clk.o
+                0x00001500                HAL_SCU_CLK_SetPLLConfig
  .text.HAL_SCU_CLK_SetOutput
-                0x000015dc       0x1c ./HAL/SCU/hal_scu_clk.o
-                0x000015dc                HAL_SCU_CLK_SetOutput
+                0x000015e4       0x1c ./HAL/SCU/hal_scu_clk.o
+                0x000015e4                HAL_SCU_CLK_SetOutput
  .text.HAL_SCU_CLK_SetPClkDiv
-                0x000015f8       0x30 ./HAL/SCU/hal_scu_clk.o
-                0x000015f8                HAL_SCU_CLK_SetPClkDiv
+                0x00001600       0x30 ./HAL/SCU/hal_scu_clk.o
+                0x00001600                HAL_SCU_CLK_SetPClkDiv
  .text.Interrupt1_Handler
-                0x00001628        0xa ./HAL/SCU/hal_scu_clk.o
-                0x00001628                Interrupt1_Handler
+                0x00001630        0xa ./HAL/SCU/hal_scu_clk.o
+                0x00001630                Interrupt1_Handler
  .text.Interrupt2_Handler
-                0x00001632        0xa ./HAL/SCU/hal_scu_clk.o
-                0x00001632                Interrupt2_Handler
+                0x0000163a        0xa ./HAL/SCU/hal_scu_clk.o
+                0x0000163a                Interrupt2_Handler
  .text.Interrupt3_Handler
-                0x0000163c        0xa ./HAL/SCU/hal_scu_clk.o
-                0x0000163c                Interrupt3_Handler
- *fill*         0x00001646        0x2 
+                0x00001644        0xa ./HAL/SCU/hal_scu_clk.o
+                0x00001644                Interrupt3_Handler
+ *fill*         0x0000164e        0x2 
  .text.PRV_PCU_IRQHandler
-                0x00001648       0x54 ./HAL/PCU/hal_pcu.o
+                0x00001650       0x54 ./HAL/PCU/hal_pcu.o
  .text.PCU0_INT_IRQHandler
-                0x0000169c       0x18 ./HAL/PCU/hal_pcu.o
+                0x000016a4       0x18 ./HAL/PCU/hal_pcu.o
  .text.PCU1_INT_IRQHandler
-                0x000016b4       0x18 ./HAL/PCU/hal_pcu.o
+                0x000016bc       0x18 ./HAL/PCU/hal_pcu.o
  .text.PCU2_INT_IRQHandler
-                0x000016cc       0x18 ./HAL/PCU/hal_pcu.o
+                0x000016d4       0x18 ./HAL/PCU/hal_pcu.o
  .text.PCU3_INT_IRQHandler
-                0x000016e4       0x18 ./HAL/PCU/hal_pcu.o
+                0x000016ec       0x18 ./HAL/PCU/hal_pcu.o
  .text.PCU4_INT_IRQHandler
-                0x000016fc       0x18 ./HAL/PCU/hal_pcu.o
+                0x00001704       0x18 ./HAL/PCU/hal_pcu.o
  .text.PCU5_INT_IRQHandler
-                0x00001714       0x18 ./HAL/PCU/hal_pcu.o
+                0x0000171c       0x18 ./HAL/PCU/hal_pcu.o
  .text.PCU6_INT_IRQHandler
-                0x0000172c       0x18 ./HAL/PCU/hal_pcu.o
+                0x00001734       0x18 ./HAL/PCU/hal_pcu.o
  .text.Interrupt36_Handler
-                0x00001744        0x8 ./HAL/PCU/hal_pcu.o
-                0x00001744                Interrupt36_Handler
- .text.Interrupt37_Handler
                 0x0000174c        0x8 ./HAL/PCU/hal_pcu.o
-                0x0000174c                Interrupt37_Handler
- .text.Interrupt38_Handler
+                0x0000174c                Interrupt36_Handler
+ .text.Interrupt37_Handler
                 0x00001754        0x8 ./HAL/PCU/hal_pcu.o
-                0x00001754                Interrupt38_Handler
- .text.Interrupt39_Handler
+                0x00001754                Interrupt37_Handler
+ .text.Interrupt38_Handler
                 0x0000175c        0x8 ./HAL/PCU/hal_pcu.o
-                0x0000175c                Interrupt39_Handler
- .text.Interrupt40_Handler
+                0x0000175c                Interrupt38_Handler
+ .text.Interrupt39_Handler
                 0x00001764        0x8 ./HAL/PCU/hal_pcu.o
-                0x00001764                Interrupt40_Handler
- .text.Interrupt41_Handler
+                0x00001764                Interrupt39_Handler
+ .text.Interrupt40_Handler
                 0x0000176c        0x8 ./HAL/PCU/hal_pcu.o
-                0x0000176c                Interrupt41_Handler
- .text.Interrupt42_Handler
+                0x0000176c                Interrupt40_Handler
+ .text.Interrupt41_Handler
                 0x00001774        0x8 ./HAL/PCU/hal_pcu.o
-                0x00001774                Interrupt42_Handler
+                0x00001774                Interrupt41_Handler
+ .text.Interrupt42_Handler
+                0x0000177c        0x8 ./HAL/PCU/hal_pcu.o
+                0x0000177c                Interrupt42_Handler
  .text.PRV_NMI_IRQHandler
-                0x0000177c       0x70 ./HAL/HPL/NMI/hpl_nmi.o
+                0x00001784       0x70 ./HAL/HPL/NMI/hpl_nmi.o
  .text.HPL_NMI_SetSource
-                0x000017ec       0x58 ./HAL/HPL/NMI/hpl_nmi.o
-                0x000017ec                HPL_NMI_SetSource
+                0x000017f4       0x58 ./HAL/HPL/NMI/hpl_nmi.o
+                0x000017f4                HPL_NMI_SetSource
  .text.NMI_Handler
-                0x00001844        0x8 ./HAL/HPL/NMI/hpl_nmi.o
-                0x00001844                NMI_Handler
+                0x0000184c        0x8 ./HAL/HPL/NMI/hpl_nmi.o
+                0x0000184c                NMI_Handler
  .text.__NVIC_EnableIRQ
-                0x0000184c       0x1c ./HAL/ADC/hal_adc.o
+                0x00001854       0x1c ./HAL/ADC/hal_adc.o
  .text.__NVIC_DisableIRQ
-                0x00001868       0x24 ./HAL/ADC/hal_adc.o
+                0x00001870       0x24 ./HAL/ADC/hal_adc.o
  .text.__NVIC_SetPriority
-                0x0000188c       0x28 ./HAL/ADC/hal_adc.o
+                0x00001894       0x28 ./HAL/ADC/hal_adc.o
  .text.ADC_SetScuEnable
-                0x000018b4       0x32 ./HAL/ADC/hal_adc.o
+                0x000018bc       0x32 ./HAL/ADC/hal_adc.o
  .text.ADC_SetSeqTrgIndependent
-                0x000018e6       0x9a ./HAL/ADC/hal_adc.o
+                0x000018ee       0x9a ./HAL/ADC/hal_adc.o
  .text.PRV_ADC_GetReg
-                0x00001980        0xc ./HAL/ADC/hal_adc.o
+                0x00001988        0xc ./HAL/ADC/hal_adc.o
  .text.PRV_ADC_SetScuEnable
-                0x0000198c        0x8 ./HAL/ADC/hal_adc.o
+                0x00001994        0x8 ./HAL/ADC/hal_adc.o
  .text.PRV_ADC_PreInit
-                0x00001994       0x58 ./HAL/ADC/hal_adc.o
+                0x0000199c       0x58 ./HAL/ADC/hal_adc.o
  .text.PRV_ADC_IRQHandler
-                0x000019ec       0x54 ./HAL/ADC/hal_adc.o
+                0x000019f4       0x54 ./HAL/ADC/hal_adc.o
  .text.PRV_ADC_NMIHandler
-                0x00001a40       0x28 ./HAL/ADC/hal_adc.o
+                0x00001a48       0x28 ./HAL/ADC/hal_adc.o
  .text.HAL_ADC_Init
-                0x00001a68       0x38 ./HAL/ADC/hal_adc.o
-                0x00001a68                HAL_ADC_Init
+                0x00001a70       0x38 ./HAL/ADC/hal_adc.o
+                0x00001a70                HAL_ADC_Init
  .text.HAL_ADC_SetClkConfig
-                0x00001aa0       0x30 ./HAL/ADC/hal_adc.o
-                0x00001aa0                HAL_ADC_SetClkConfig
+                0x00001aa8       0x30 ./HAL/ADC/hal_adc.o
+                0x00001aa8                HAL_ADC_SetClkConfig
  .text.HAL_ADC_SetConfig
-                0x00001ad0       0x88 ./HAL/ADC/hal_adc.o
-                0x00001ad0                HAL_ADC_SetConfig
+                0x00001ad8       0x88 ./HAL/ADC/hal_adc.o
+                0x00001ad8                HAL_ADC_SetConfig
  .text.HAL_ADC_SetIRQ
-                0x00001b58      0x11c ./HAL/ADC/hal_adc.o
-                0x00001b58                HAL_ADC_SetIRQ
+                0x00001b60      0x11c ./HAL/ADC/hal_adc.o
+                0x00001b60                HAL_ADC_SetIRQ
  .text.HAL_ADC_Start
-                0x00001c74       0x68 ./HAL/ADC/hal_adc.o
-                0x00001c74                HAL_ADC_Start
+                0x00001c7c       0x68 ./HAL/ADC/hal_adc.o
+                0x00001c7c                HAL_ADC_Start
  .text.HAL_ADC_Stop
-                0x00001cdc       0x60 ./HAL/ADC/hal_adc.o
-                0x00001cdc                HAL_ADC_Stop
+                0x00001ce4       0x60 ./HAL/ADC/hal_adc.o
+                0x00001ce4                HAL_ADC_Stop
  .text.HAL_ADC_SetWaitComplete
-                0x00001d3c       0x2e ./HAL/ADC/hal_adc.o
-                0x00001d3c                HAL_ADC_SetWaitComplete
+                0x00001d44       0x2e ./HAL/ADC/hal_adc.o
+                0x00001d44                HAL_ADC_SetWaitComplete
  .text.HAL_ADC_GetData
-                0x00001d6a       0x46 ./HAL/ADC/hal_adc.o
-                0x00001d6a                HAL_ADC_GetData
+                0x00001d72       0x46 ./HAL/ADC/hal_adc.o
+                0x00001d72                HAL_ADC_GetData
  .text.HAL_ADC_SetSeqConfig
-                0x00001db0       0x50 ./HAL/ADC/hal_adc.o
-                0x00001db0                HAL_ADC_SetSeqConfig
+                0x00001db8       0x50 ./HAL/ADC/hal_adc.o
+                0x00001db8                HAL_ADC_SetSeqConfig
  .text.Interrupt74_Handler
-                0x00001e00        0xa ./HAL/ADC/hal_adc.o
-                0x00001e00                Interrupt74_Handler
+                0x00001e08        0xa ./HAL/ADC/hal_adc.o
+                0x00001e08                Interrupt74_Handler
  .text.Interrupt75_Handler
-                0x00001e0a        0xa ./HAL/ADC/hal_adc.o
-                0x00001e0a                Interrupt75_Handler
+                0x00001e12        0xa ./HAL/ADC/hal_adc.o
+                0x00001e12                Interrupt75_Handler
  .text.Interrupt76_Handler
-                0x00001e14        0xa ./HAL/ADC/hal_adc.o
-                0x00001e14                Interrupt76_Handler
+                0x00001e1c        0xa ./HAL/ADC/hal_adc.o
+                0x00001e1c                Interrupt76_Handler
  .text.HardFault_Handler
-                0x00001e1e        0x2 ./ABOV/Source/startup_a34xxxx.o
-                0x00001e1e                HardFault_Handler
+                0x00001e26        0x2 ./ABOV/Source/startup_a34xxxx.o
+                0x00001e26                HardFault_Handler
  .text.Default_Handler
-                0x00001e20        0x2 ./ABOV/Source/startup_a34xxxx.o
-                0x00001e20                DebugMon_Handler
-                0x00001e20                Interrupt31_Handler
-                0x00001e20                Interrupt71_Handler
-                0x00001e20                Interrupt93_Handler
-                0x00001e20                Interrupt107_Handler
-                0x00001e20                PendSV_Handler
-                0x00001e20                Interrupt18_Handler
-                0x00001e20                Interrupt11_Handler
-                0x00001e20                Interrupt56_Handler
-                0x00001e20                Interrupt117_Handler
-                0x00001e20                Interrupt29_Handler
-                0x00001e20                Interrupt103_Handler
-                0x00001e20                Interrupt106_Handler
-                0x00001e20                Interrupt72_Handler
-                0x00001e20                Interrupt89_Handler
-                0x00001e20                Interrupt21_Handler
-                0x00001e20                Interrupt81_Handler
-                0x00001e20                Interrupt28_Handler
-                0x00001e20                Interrupt33_Handler
-                0x00001e20                Interrupt8_Handler
-                0x00001e20                Interrupt73_Handler
-                0x00001e20                Interrupt61_Handler
-                0x00001e20                Interrupt5_Handler
-                0x00001e20                UsageFault_Handler
-                0x00001e20                Interrupt35_Handler
-                0x00001e20                Interrupt27_Handler
-                0x00001e20                Interrupt26_Handler
-                0x00001e20                Interrupt87_Handler
-                0x00001e20                Interrupt123_Handler
-                0x00001e20                Interrupt124_Handler
-                0x00001e20                Interrupt90_Handler
-                0x00001e20                Interrupt83_Handler
-                0x00001e20                Interrupt122_Handler
-                0x00001e20                Interrupt44_Handler
-                0x00001e20                Interrupt34_Handler
-                0x00001e20                Interrupt121_Handler
-                0x00001e20                Interrupt7_Handler
-                0x00001e20                Interrupt0_Handler
-                0x00001e20                Interrupt54_Handler
-                0x00001e20                Interrupt22_Handler
-                0x00001e20                Interrupt120_Handler
-                0x00001e20                Interrupt52_Handler
-                0x00001e20                Interrupt105_Handler
-                0x00001e20                Interrupt69_Handler
-                0x00001e20                Interrupt4_Handler
-                0x00001e20                Interrupt115_Handler
-                0x00001e20                Interrupt24_Handler
-                0x00001e20                Interrupt16_Handler
-                0x00001e20                Default_Handler
-                0x00001e20                Interrupt23_Handler
-                0x00001e20                Interrupt17_Handler
-                0x00001e20                Interrupt92_Handler
-                0x00001e20                Interrupt9_Handler
-                0x00001e20                Interrupt19_Handler
-                0x00001e20                Interrupt118_Handler
-                0x00001e20                Interrupt97_Handler
-                0x00001e20                Interrupt32_Handler
-                0x00001e20                Interrupt6_Handler
-                0x00001e20                Interrupt53_Handler
-                0x00001e20                Interrupt60_Handler
-                0x00001e20                Interrupt79_Handler
-                0x00001e20                Interrupt85_Handler
-                0x00001e20                Interrupt98_Handler
-                0x00001e20                Interrupt96_Handler
-                0x00001e20                Interrupt45_Handler
-                0x00001e20                MemManage_Handler
-                0x00001e20                SVC_Handler
-                0x00001e20                Interrupt10_Handler
-                0x00001e20                Interrupt25_Handler
-                0x00001e20                Interrupt88_Handler
-                0x00001e20                Interrupt20_Handler
-                0x00001e20                Interrupt101_Handler
-                0x00001e20                Interrupt100_Handler
-                0x00001e20                Interrupt43_Handler
-                0x00001e20                Interrupt116_Handler
-                0x00001e20                Interrupt91_Handler
-                0x00001e20                Interrupt99_Handler
-                0x00001e20                Interrupt102_Handler
-                0x00001e20                Interrupt14_Handler
-                0x00001e20                Interrupt82_Handler
-                0x00001e20                Interrupt13_Handler
-                0x00001e20                Interrupt58_Handler
-                0x00001e20                Interrupt59_Handler
-                0x00001e20                Interrupt46_Handler
-                0x00001e20                Interrupt15_Handler
-                0x00001e20                Interrupt51_Handler
-                0x00001e20                Interrupt119_Handler
-                0x00001e20                Interrupt70_Handler
-                0x00001e20                Interrupt86_Handler
-                0x00001e20                Interrupt48_Handler
-                0x00001e20                BusFault_Handler
-                0x00001e20                Interrupt94_Handler
-                0x00001e20                Interrupt77_Handler
-                0x00001e20                Interrupt55_Handler
-                0x00001e20                Interrupt95_Handler
-                0x00001e20                Interrupt50_Handler
-                0x00001e20                Interrupt78_Handler
-                0x00001e20                Interrupt30_Handler
-                0x00001e20                Interrupt47_Handler
-                0x00001e20                Interrupt57_Handler
-                0x00001e20                Interrupt12_Handler
-                0x00001e20                Interrupt84_Handler
-                0x00001e20                Interrupt62_Handler
-                0x00001e20                Interrupt104_Handler
-                0x00001e20                Interrupt49_Handler
-                0x00001e20                Interrupt80_Handler
- *fill*         0x00001e22        0x2 
+                0x00001e28        0x2 ./ABOV/Source/startup_a34xxxx.o
+                0x00001e28                DebugMon_Handler
+                0x00001e28                Interrupt31_Handler
+                0x00001e28                Interrupt71_Handler
+                0x00001e28                Interrupt93_Handler
+                0x00001e28                Interrupt107_Handler
+                0x00001e28                PendSV_Handler
+                0x00001e28                Interrupt18_Handler
+                0x00001e28                Interrupt11_Handler
+                0x00001e28                Interrupt56_Handler
+                0x00001e28                Interrupt117_Handler
+                0x00001e28                Interrupt29_Handler
+                0x00001e28                Interrupt103_Handler
+                0x00001e28                Interrupt106_Handler
+                0x00001e28                Interrupt72_Handler
+                0x00001e28                Interrupt89_Handler
+                0x00001e28                Interrupt21_Handler
+                0x00001e28                Interrupt81_Handler
+                0x00001e28                Interrupt28_Handler
+                0x00001e28                Interrupt33_Handler
+                0x00001e28                Interrupt8_Handler
+                0x00001e28                Interrupt73_Handler
+                0x00001e28                Interrupt61_Handler
+                0x00001e28                Interrupt5_Handler
+                0x00001e28                UsageFault_Handler
+                0x00001e28                Interrupt35_Handler
+                0x00001e28                Interrupt27_Handler
+                0x00001e28                Interrupt26_Handler
+                0x00001e28                Interrupt87_Handler
+                0x00001e28                Interrupt123_Handler
+                0x00001e28                Interrupt124_Handler
+                0x00001e28                Interrupt90_Handler
+                0x00001e28                Interrupt83_Handler
+                0x00001e28                Interrupt122_Handler
+                0x00001e28                Interrupt44_Handler
+                0x00001e28                Interrupt34_Handler
+                0x00001e28                Interrupt121_Handler
+                0x00001e28                Interrupt7_Handler
+                0x00001e28                Interrupt0_Handler
+                0x00001e28                Interrupt54_Handler
+                0x00001e28                Interrupt22_Handler
+                0x00001e28                Interrupt120_Handler
+                0x00001e28                Interrupt52_Handler
+                0x00001e28                Interrupt105_Handler
+                0x00001e28                Interrupt69_Handler
+                0x00001e28                Interrupt4_Handler
+                0x00001e28                Interrupt115_Handler
+                0x00001e28                Interrupt24_Handler
+                0x00001e28                Interrupt16_Handler
+                0x00001e28                Default_Handler
+                0x00001e28                Interrupt23_Handler
+                0x00001e28                Interrupt17_Handler
+                0x00001e28                Interrupt92_Handler
+                0x00001e28                Interrupt9_Handler
+                0x00001e28                Interrupt19_Handler
+                0x00001e28                Interrupt118_Handler
+                0x00001e28                Interrupt97_Handler
+                0x00001e28                Interrupt32_Handler
+                0x00001e28                Interrupt6_Handler
+                0x00001e28                Interrupt53_Handler
+                0x00001e28                Interrupt60_Handler
+                0x00001e28                Interrupt79_Handler
+                0x00001e28                Interrupt85_Handler
+                0x00001e28                Interrupt98_Handler
+                0x00001e28                Interrupt96_Handler
+                0x00001e28                Interrupt45_Handler
+                0x00001e28                MemManage_Handler
+                0x00001e28                SVC_Handler
+                0x00001e28                Interrupt10_Handler
+                0x00001e28                Interrupt25_Handler
+                0x00001e28                Interrupt88_Handler
+                0x00001e28                Interrupt20_Handler
+                0x00001e28                Interrupt101_Handler
+                0x00001e28                Interrupt100_Handler
+                0x00001e28                Interrupt43_Handler
+                0x00001e28                Interrupt116_Handler
+                0x00001e28                Interrupt91_Handler
+                0x00001e28                Interrupt99_Handler
+                0x00001e28                Interrupt102_Handler
+                0x00001e28                Interrupt14_Handler
+                0x00001e28                Interrupt82_Handler
+                0x00001e28                Interrupt13_Handler
+                0x00001e28                Interrupt58_Handler
+                0x00001e28                Interrupt59_Handler
+                0x00001e28                Interrupt46_Handler
+                0x00001e28                Interrupt15_Handler
+                0x00001e28                Interrupt51_Handler
+                0x00001e28                Interrupt119_Handler
+                0x00001e28                Interrupt70_Handler
+                0x00001e28                Interrupt86_Handler
+                0x00001e28                Interrupt48_Handler
+                0x00001e28                BusFault_Handler
+                0x00001e28                Interrupt94_Handler
+                0x00001e28                Interrupt77_Handler
+                0x00001e28                Interrupt55_Handler
+                0x00001e28                Interrupt95_Handler
+                0x00001e28                Interrupt50_Handler
+                0x00001e28                Interrupt78_Handler
+                0x00001e28                Interrupt30_Handler
+                0x00001e28                Interrupt47_Handler
+                0x00001e28                Interrupt57_Handler
+                0x00001e28                Interrupt12_Handler
+                0x00001e28                Interrupt84_Handler
+                0x00001e28                Interrupt62_Handler
+                0x00001e28                Interrupt104_Handler
+                0x00001e28                Interrupt49_Handler
+                0x00001e28                Interrupt80_Handler
+ *fill*         0x00001e2a        0x2 
  .text.Reset_Handler
-                0x00001e24       0x60 ./ABOV/Source/startup_a34xxxx.o
-                0x00001e24                Reset_Handler
+                0x00001e2c       0x60 ./ABOV/Source/startup_a34xxxx.o
+                0x00001e2c                Reset_Handler
  .text.SystemInit
-                0x00001e84       0x48 ./ABOV/Source/system_a34xxxx.o
-                0x00001e84                SystemInit
+                0x00001e8c       0x48 ./ABOV/Source/system_a34xxxx.o
+                0x00001e8c                SystemInit
  .text.SystemDelayUS
-                0x00001ecc       0x1c ./ABOV/Source/system_a34xxxx.o
-                0x00001ecc                SystemDelayUS
- .text          0x00001ee8       0x30 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
-                0x00001ee8                __aeabi_uldivmod
+                0x00001ed4       0x1c ./ABOV/Source/system_a34xxxx.o
+                0x00001ed4                SystemDelayUS
+ .text          0x00001ef0       0x30 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
+                0x00001ef0                __aeabi_uldivmod
  .text.__udivmoddi4
-                0x00001f18      0x2bc C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
-                0x00001f18                __udivmoddi4
- .text          0x000021d4        0x4 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libgcc.a(_dvmd_tls.o)
-                0x000021d4                __aeabi_idiv0
-                0x000021d4                __aeabi_ldiv0
- .text.exit     0x000021d8       0x24 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-exit.o)
-                0x000021d8                exit
+                0x00001f20      0x2bc C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
+                0x00001f20                __udivmoddi4
+ .text          0x000021dc        0x4 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libgcc.a(_dvmd_tls.o)
+                0x000021dc                __aeabi_idiv0
+                0x000021dc                __aeabi_ldiv0
+ .text.exit     0x000021e0       0x24 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-exit.o)
+                0x000021e0                exit
  .text._vsnprintf_r
-                0x000021fc       0x56 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-vsnprintf.o)
-                0x000021fc                _vsniprintf_r
-                0x000021fc                _vsnprintf_r
- *fill*         0x00002252        0x2 
+                0x00002204       0x56 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-vsnprintf.o)
+                0x00002204                _vsniprintf_r
+                0x00002204                _vsnprintf_r
+ *fill*         0x0000225a        0x2 
  .text.vsnprintf
-                0x00002254       0x1c C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-vsnprintf.o)
-                0x00002254                vsniprintf
-                0x00002254                vsnprintf
- .text.memset   0x00002270       0x10 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-memset.o)
-                0x00002270                memset
+                0x0000225c       0x1c C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-vsnprintf.o)
+                0x0000225c                vsniprintf
+                0x0000225c                vsnprintf
+ .text.memset   0x00002278       0x10 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-memset.o)
+                0x00002278                memset
  .text.__libc_init_array
-                0x00002280       0x48 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-init.o)
-                0x00002280                __libc_init_array
+                0x00002288       0x48 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-init.o)
+                0x00002288                __libc_init_array
  .text.__retarget_lock_acquire_recursive
-                0x000022c8        0x2 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-lock.o)
-                0x000022c8                __retarget_lock_acquire_recursive
+                0x000022d0        0x2 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-lock.o)
+                0x000022d0                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x000022ca        0x2 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-lock.o)
-                0x000022ca                __retarget_lock_release_recursive
- .text._free_r  0x000022cc       0x94 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-freer.o)
-                0x000022cc                _free_r
+                0x000022d2        0x2 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-lock.o)
+                0x000022d2                __retarget_lock_release_recursive
+ .text._free_r  0x000022d4       0x94 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-freer.o)
+                0x000022d4                _free_r
  .text.sbrk_aligned
-                0x00002360       0x44 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-mallocr.o)
+                0x00002368       0x44 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-mallocr.o)
  .text._malloc_r
-                0x000023a4      0x100 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-mallocr.o)
-                0x000023a4                _malloc_r
+                0x000023ac      0x100 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-mallocr.o)
+                0x000023ac                _malloc_r
  .text.__malloc_lock
-                0x000024a4        0xc C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-mlock.o)
-                0x000024a4                __malloc_lock
+                0x000024ac        0xc C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-mlock.o)
+                0x000024ac                __malloc_lock
  .text.__malloc_unlock
-                0x000024b0        0xc C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-mlock.o)
-                0x000024b0                __malloc_unlock
+                0x000024b8        0xc C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-mlock.o)
+                0x000024b8                __malloc_unlock
  .text.__ssputs_r
-                0x000024bc       0xb6 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
-                0x000024bc                __ssputs_r
- *fill*         0x00002572        0x2 
+                0x000024c4       0xb6 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
+                0x000024c4                __ssputs_r
+ *fill*         0x0000257a        0x2 
  .text._svfprintf_r
-                0x00002574      0x1f8 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
-                0x00002574                _svfiprintf_r
-                0x00002574                _svfprintf_r
+                0x0000257c      0x1f8 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
+                0x0000257c                _svfiprintf_r
+                0x0000257c                _svfprintf_r
  .text._printf_common
-                0x0000276c       0xda C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
-                0x0000276c                _printf_common
- *fill*         0x00002846        0x2 
+                0x00002774       0xda C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
+                0x00002774                _printf_common
+ *fill*         0x0000284e        0x2 
  .text._printf_i
-                0x00002848      0x23c C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
-                0x00002848                _printf_i
- .text.memmove  0x00002a84       0x34 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-memmove.o)
-                0x00002a84                memmove
- .text._sbrk_r  0x00002ab8       0x20 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-sbrkr.o)
-                0x00002ab8                _sbrk_r
- *fill*         0x00002ad8        0x8 
+                0x00002850      0x23c C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
+                0x00002850                _printf_i
+ .text.memmove  0x00002a8c       0x34 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-memmove.o)
+                0x00002a8c                memmove
+ .text._sbrk_r  0x00002ac0       0x20 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+                0x00002ac0                _sbrk_r
  .text          0x00002ae0       0xa0 C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-memchr.o)
                 0x00002ae0                memchr
  .text.memcpy   0x00002b80       0x1c C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-memcpy-stub.o)
@@ -4811,22 +4810,22 @@ LOAD linker stubs
  .debug_line_str
                 0x00000283       0xde C:/Program Files (x86)/ABOV/eMStudio32/bin/13.2 Rel1/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m/nofp\libg_nano.a(libc_a-memchr.o)
 
-.debug_info     0x00000000     0xc6de
+.debug_info     0x00000000     0xc6f7
  .debug_info    0x00000000      0x83a ./Main/DebugLibrary/debug_framework.o
  .debug_info    0x0000083a      0x9ae ./Main/main.o
  .debug_info    0x000011e8      0x51d ./Main/prv_scu_clk.o
- .debug_info    0x00001705      0xdb0 ./Main/prv_user_code.o
- .debug_info    0x000024b5      0x529 ./Main/user_adc.o
- .debug_info    0x000029de      0x12b ./Main/user_adc_isr.o
- .debug_info    0x00002b09      0x4c5 ./Main/user_uart.o
- .debug_info    0x00002fce      0x33a ./Main/user_uart_isr.o
- .debug_info    0x00003308     0x1dc8 ./HAL/UART/hal_uart.o
- .debug_info    0x000050d0     0x1d2e ./HAL/SCU/hal_scu_clk.o
- .debug_info    0x00006dfe     0x2417 ./HAL/PCU/hal_pcu.o
- .debug_info    0x00009215      0xaad ./HAL/HPL/NMI/hpl_nmi.o
- .debug_info    0x00009cc2     0x1ff8 ./HAL/ADC/hal_adc.o
- .debug_info    0x0000bcba      0x2c6 ./ABOV/Source/startup_a34xxxx.o
- .debug_info    0x0000bf80      0x75e ./ABOV/Source/system_a34xxxx.o
+ .debug_info    0x00001705      0xdbf ./Main/prv_user_code.o
+ .debug_info    0x000024c4      0x533 ./Main/user_adc.o
+ .debug_info    0x000029f7      0x12b ./Main/user_adc_isr.o
+ .debug_info    0x00002b22      0x4c5 ./Main/user_uart.o
+ .debug_info    0x00002fe7      0x33a ./Main/user_uart_isr.o
+ .debug_info    0x00003321     0x1dc8 ./HAL/UART/hal_uart.o
+ .debug_info    0x000050e9     0x1d2e ./HAL/SCU/hal_scu_clk.o
+ .debug_info    0x00006e17     0x2417 ./HAL/PCU/hal_pcu.o
+ .debug_info    0x0000922e      0xaad ./HAL/HPL/NMI/hpl_nmi.o
+ .debug_info    0x00009cdb     0x1ff8 ./HAL/ADC/hal_adc.o
+ .debug_info    0x0000bcd3      0x2c6 ./ABOV/Source/startup_a34xxxx.o
+ .debug_info    0x0000bf99      0x75e ./ABOV/Source/system_a34xxxx.o
 
 .debug_abbrev   0x00000000     0x220b
  .debug_abbrev  0x00000000      0x1f7 ./Main/DebugLibrary/debug_framework.o
@@ -4846,29 +4845,29 @@ LOAD linker stubs
  .debug_abbrev  0x0000208d      0x17e ./ABOV/Source/system_a34xxxx.o
 
 .debug_loclists
-                0x00000000     0x4081
+                0x00000000     0x4087
  .debug_loclists
                 0x00000000      0x2e7 ./Main/DebugLibrary/debug_framework.o
  .debug_loclists
-                0x000002e7      0x180 ./Main/prv_user_code.o
+                0x000002e7      0x186 ./Main/prv_user_code.o
  .debug_loclists
-                0x00000467       0x36 ./Main/user_adc.o
+                0x0000046d       0x36 ./Main/user_adc.o
  .debug_loclists
-                0x0000049d       0x36 ./Main/user_uart.o
+                0x000004a3       0x36 ./Main/user_uart.o
  .debug_loclists
-                0x000004d3      0xf15 ./HAL/UART/hal_uart.o
+                0x000004d9      0xf15 ./HAL/UART/hal_uart.o
  .debug_loclists
-                0x000013e8      0xdf4 ./HAL/SCU/hal_scu_clk.o
+                0x000013ee      0xdf4 ./HAL/SCU/hal_scu_clk.o
  .debug_loclists
-                0x000021dc      0xebd ./HAL/PCU/hal_pcu.o
+                0x000021e2      0xebd ./HAL/PCU/hal_pcu.o
  .debug_loclists
-                0x00003099      0x281 ./HAL/HPL/NMI/hpl_nmi.o
+                0x0000309f      0x281 ./HAL/HPL/NMI/hpl_nmi.o
  .debug_loclists
-                0x0000331a      0xca9 ./HAL/ADC/hal_adc.o
+                0x00003320      0xca9 ./HAL/ADC/hal_adc.o
  .debug_loclists
-                0x00003fc3       0x38 ./ABOV/Source/startup_a34xxxx.o
+                0x00003fc9       0x38 ./ABOV/Source/startup_a34xxxx.o
  .debug_loclists
-                0x00003ffb       0x86 ./ABOV/Source/system_a34xxxx.o
+                0x00004001       0x86 ./ABOV/Source/system_a34xxxx.o
 
 .debug_aranges  0x00000000      0x748
  .debug_aranges
@@ -5011,22 +5010,22 @@ LOAD linker stubs
  .debug_macro   0x0001a2fa      0x12a ./ABOV/Source/startup_a34xxxx.o
  .debug_macro   0x0001a424      0x11b ./ABOV/Source/system_a34xxxx.o
 
-.debug_line     0x00000000     0xa63c
+.debug_line     0x00000000     0xa640
  .debug_line    0x00000000      0x79f ./Main/DebugLibrary/debug_framework.o
  .debug_line    0x0000079f      0x82b ./Main/main.o
  .debug_line    0x00000fca      0x7c9 ./Main/prv_scu_clk.o
- .debug_line    0x00001793      0xae5 ./Main/prv_user_code.o
- .debug_line    0x00002278      0x7c5 ./Main/user_adc.o
- .debug_line    0x00002a3d      0x77b ./Main/user_adc_isr.o
- .debug_line    0x000031b8      0x7c7 ./Main/user_uart.o
- .debug_line    0x0000397f      0x8b0 ./Main/user_uart_isr.o
- .debug_line    0x0000422f     0x14e2 ./HAL/UART/hal_uart.o
- .debug_line    0x00005711     0x12db ./HAL/SCU/hal_scu_clk.o
- .debug_line    0x000069ec     0x12bd ./HAL/PCU/hal_pcu.o
- .debug_line    0x00007ca9      0xa42 ./HAL/HPL/NMI/hpl_nmi.o
- .debug_line    0x000086eb     0x11cb ./HAL/ADC/hal_adc.o
- .debug_line    0x000098b6      0x6c0 ./ABOV/Source/startup_a34xxxx.o
- .debug_line    0x00009f76      0x6c6 ./ABOV/Source/system_a34xxxx.o
+ .debug_line    0x00001793      0xae7 ./Main/prv_user_code.o
+ .debug_line    0x0000227a      0x7c7 ./Main/user_adc.o
+ .debug_line    0x00002a41      0x77b ./Main/user_adc_isr.o
+ .debug_line    0x000031bc      0x7c7 ./Main/user_uart.o
+ .debug_line    0x00003983      0x8b0 ./Main/user_uart_isr.o
+ .debug_line    0x00004233     0x14e2 ./HAL/UART/hal_uart.o
+ .debug_line    0x00005715     0x12db ./HAL/SCU/hal_scu_clk.o
+ .debug_line    0x000069f0     0x12bd ./HAL/PCU/hal_pcu.o
+ .debug_line    0x00007cad      0xa42 ./HAL/HPL/NMI/hpl_nmi.o
+ .debug_line    0x000086ef     0x11cb ./HAL/ADC/hal_adc.o
+ .debug_line    0x000098ba      0x6c0 ./ABOV/Source/startup_a34xxxx.o
+ .debug_line    0x00009f7a      0x6c6 ./ABOV/Source/system_a34xxxx.o
 
 .debug_str      0x00000000    0x6bcb7
  .debug_str     0x00000000    0x6bcb7 ./Main/DebugLibrary/debug_framework.o

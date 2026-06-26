@@ -18,7 +18,7 @@
 #include "hal_adc.h"
 #include "DebugLibrary/debug_framework.h"
 
-#define BATTERY_ADC_ID              ADC_ID_0
+#define BATTERY_ADC_ID              ADC_ID_2
 #define BATTERY_VCORE_CH            23U
 #define BATTERY_ADC_RESOLUTION      4096UL
 #define BATTERY_ADC_WAIT_TIMEOUT    100000UL
